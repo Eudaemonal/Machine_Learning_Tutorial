@@ -52,27 +52,29 @@ As you might need to try several times, here are some useful commands
 
 
 ## Install CUDA 9.0
-After you installed
+After you successfully installed nvidia driver, the next step is CUDA, for the current(r1.8) version of tensorflow, you should to use CUDA 9.0 with cudnn 7.1.3. however I installed 9.1 at first, tensorflow will not run and thrown a missing file error, the problem was solved after I installed the 9.0 version.
 
-sudo sh cuda_9.1.85_387.26_linux.run
+```sudo sh cuda_9.1.85_387.26_linux.run```
 
-Install without driver
-export path and lib path as instructed
+In the options
+* As you already have a newer driver, you do not need to install driver again. 
+* After installation, you should export path and lib path as instructed
 
 In .bashrc
-export PATH=$PATH:/usr/local/cuda-9.0/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY:/usr/local/cuda-9.0/lib64
+```export PATH=$PATH:/usr/local/cuda-9.0/bin```
+```export LD_LIBRARY_PATH=$LD_LIBRARY:/usr/local/cuda-9.0/lib64```
 
-sudo bash -c "echo /usr/local/cuda-9.0/lib64/ > /etc/ld.so.conf.d/cuda.conf"
-sudo ldconfig
+edit ```cuda.conf``` use following command
+```sudo bash -c "echo /usr/local/cuda-9.0/lib64/ > /etc/ld.so.conf.d/cuda.conf"```
+```sudo ldconfig```
 
-edit /etc/environment add line
-:/usr/local/cuda-9.0/bin
+edit ```/etc/environment``` add the following line
+```:/usr/local/cuda-9.0/bin```
 
 
-check installation
+you can check installation use 
 
-nvcc --version
+```nvcc --version```
 
 Note: you can compile CUDA C++ program use nvcc just like gcc.
 
