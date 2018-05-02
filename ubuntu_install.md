@@ -1,8 +1,16 @@
-# Nvidia driver install
+# Introduction
 
-1. non-gui
+I installed Tensorflow GPU version on my laptop Gigabyte Aero 14 (7700HQ, GTX 1060)
 
-Ctrl + Alt + F2
+The os version is: Ubuntu 14.04.4 LTS amd64
+
+## Nvidia driver install
+
+#### 1. non-gui
+
+After installation of the os, you will normally not be able to see the gui desktop because of graphic cards conflict, use the following command to access terminal
+
+```Ctrl + Alt + F1```
 
 2. Disable nvidia in BIOS
 disable 3D acceleration, so that you can login gui
@@ -19,8 +27,6 @@ sudo apt-get install nvidia-390 nvidia-settings
 
 
 
-
-* PASSWORD: M1919C5*6$lax
 
 * switch to nvidia card
 sudo prime-select nvidia
