@@ -1,69 +1,60 @@
 # Introduction
 
-I installed Tensorflow GPU version on my laptop Gigabyte Aero 14 (7700HQ, GTX 1060)
+I installed Tensorflow GPU version on my laptop Gigabyte Aero 14 (7700HQ, GTX 1060), this instruction might be helpful if you want to use tensorflow on a laptop with both Nvidia GPU and Inter integrated GPU, the issue here is that you cannot simply connect your HDMI cable to your nvidia graph card like a desktop, you need to do some extra to solve the conflict.
 
 The os version is: Ubuntu 14.04.4 LTS amd64
 
 ## Nvidia driver install
 
-#### 1. non-gui
+#### 1. Login with non-gui
 
-After installation of the os, you will normally not be able to see the gui desktop because of graphic cards conflict, use the following command to access terminal
+After installation of the os, you will normally not be able to see the gui desktop because of graphic cards conflict, you can use the following command to access terminal.
 
 ```Ctrl + Alt + F1```
 
-2. Disable nvidia in BIOS
-disable 3D acceleration, so that you can login gui
-confugure network
+Reboot your laptop with ```reboot```
 
-3. add driver ppa
-
-sudo add-apt-repository ppa:graphics-drivers
-
-sudo apt-get update
+#### 2. Disable nvidia graphics in BIOS
+You can login gui version os by disable nvidia graphics in BIOS first, press F12 at start up, choose disable 3D acceleration, then save change and restart, you will be able to login and confugure your network.
 
 
-sudo apt-get install nvidia-390 nvidia-settings
-
-
-
-
-* switch to nvidia card
-sudo prime-select nvidia
-
-* check current card in use
-prime-select query
-
-4. Enable nvidia in BIOS
-
-
-
-
-
-* disable or enable intel 
-sudo service lightdm stop
-sudo service lightdm start
-
-
-* install cuda
-sudo sh cuda_9.1.85_387.26_linux.run
-
-
-
-sudo apt-get purge nvidia*
-
-
-* Follow instruction, able to install, unable to show gui
+#### 3. Follow the instruction
+install nvidia graphics driver follow the instraction, I choose to download nvidia-390 here.
 https://gist.github.com/wangruohui/df039f0dc434d6486f5d4d098aa52d07
 
-* execute:
-sudo apt-get install nvidia-390
+After verify with ```nvidia-smi```, if everything is okay, you can reboot now
 
-problem solved
+
+#### 4. Enable nvidia graphics in BIOS
+For some reason, after enable nvidia GPU, the gui desktop still won't show up, I use tty and install the same driver with apt-get, then it works after reboot
+
+```sudo add-apt-repository ppa:graphics-drivers```
+```sudo apt-get update```
+```sudo apt-get install nvidia-390 nvidia-settings```
+
+You will now be able to see GeForce GTX 1060/PCIe/SSE2 in All Settings/Details, 
+
+#### 5. Some commands might be useful
+As you might need to try several times, here are some useful commands
+
+* switch to nvidia card
+```sudo prime-select nvidia```
+
+* check current card in use
+```prime-select query```
+
+* disable or enable lightdm
+```sudo service lightdm stop```
+```sudo service lightdm start```
+
+* uninstall nvidia driver
+```sudo apt-get purge nvidia*```
+
 
 ## Install CUDA 9.0
+After you installed
 
-sudo sh *.run
+sudo sh cuda_9.1.85_387.26_linux.run
 
 Install without driver
 export path and lib path as instructed
@@ -78,7 +69,14 @@ sudo ldconfig
 edit /etc/environment add line
 :/usr/local/cuda-9.0/bin
 
-# Install cudnn
+
+check installation
+
+nvcc --version
+
+Note: you can compile CUDA C++ program use nvcc just like gcc.
+
+## Install cudnn
 follow instruction: 
 https://docs.nvidia.com/deeplearning/sdk/cudnn-install/
 
