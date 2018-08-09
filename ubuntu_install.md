@@ -2,7 +2,7 @@
 
 I installed Tensorflow GPU version on my laptop Gigabyte Aero 14 (7700HQ, GTX 1060), this instruction might be helpful if you want to use tensorflow on a laptop with both Nvidia GPU and Inter integrated GPU, the issue here is that you cannot simply connect your HDMI cable to your nvidia graph card like a desktop, you need to do some extra to solve the conflict.
 
-The os version is: Ubuntu 14.04.4 LTS amd64
+The os version is: Ubuntu 16.04.4 LTS amd64
 
 ## Nvidia driver install
 
